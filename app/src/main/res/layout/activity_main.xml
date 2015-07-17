@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:id="@+id/user_name">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name_view"
+        android:layout_gravity="center_vertical"
+        android:text="@string/user_name_view"
+        android:layout_marginTop="-190dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="20dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/password_view"
+        android:layout_gravity="center_vertical"
+        android:text="@string/password_view"
+        android:layout_marginTop="-140dp"
+        android:layout_marginLeft="-95dp"
+        android:textColor="@android:color/black"
+        android:textSize="20dip" />
+
+    <EditText
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_text"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp" />
+
+    <Button
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:id="@+id/register_button"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-130dp"
+        android:layout_marginTop="-10dp"
+        android:clickable="true"
+        android:onClick="onRegister" />
+
+    <Button
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_button"
+        android:id="@+id/login_button"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:layout_marginLeft="-145dp"
+        android:layout_marginTop="-70dp"
+        android:onClick="onLogin" />
+
+    <TextView
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fridge_app"
+        android:id="@+id/fridge_app"
+        android:layout_marginLeft="-360dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="30dip" />
+
+    <EditText
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/user_name_text"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-260dp"
+        android:layout_marginTop="-180dp" />
+
+</LinearLayout>

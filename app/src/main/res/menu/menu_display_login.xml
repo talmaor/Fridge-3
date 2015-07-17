@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.fridge.DisplayLoginActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_sort_by_name"
+            android:orderInCategory="1"
+            app:showAsAction="never"
+            android:title="Sort products by name"/>
+        <item
+            android:id="@+id/action_sort_by_exp_date"
+            android:orderInCategory="2"
+            app:showAsAction="never"
+            android:title="Sort products by expiry date"/>
+        <item
+            android:id="@+id/action_sort_by_type"
+            android:orderInCategory="3"
+            app:showAsAction="never"
+            android:title="Sort products by type"/>
+    </group>
+
+</menu>
