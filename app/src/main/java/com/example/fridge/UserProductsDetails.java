@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class UserProductsDetails {
     private int code;
-    private String user;
+    private String name;
     private ArrayList<ProductDetails> products;
 
     public String getUser() {
-        return user;
+        return name;
     }
 
     public ArrayList<ProductDetails> getProducts() {
@@ -21,7 +21,7 @@ public class UserProductsDetails {
 
     public void setUser(String user) {
 
-        this.user = user;
+        this.name = user;
     }
 
     public void setCode(int code) {

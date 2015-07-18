@@ -192,15 +192,19 @@ public class MainActivity extends ActionBarActivity {
     public void onLogin(View view) {
         setPostRequestString();
 
-        webservice.loginAccount(user, new Callback<UserProductsDetails>() {
+        webservice.loginAccount(user, new Callback<UserProductsDetails>()
+        {
             @Override
-            public void success(UserProductsDetails serviceResponse, Response response) {
+            public void success(UserProductsDetails serviceResponse, Response response)
+            {
                 Intent intent = new Intent(getApplicationContext(), DisplayLoginActivity.class);
                 ArrayList<String> items = null;
-                try {
-
+                try
+                {
                     items = ConvertServerResponseToString(serviceResponse);
-                } catch (JSONException e) {
+                }
+                catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
                 if (null != items) {
@@ -212,13 +216,15 @@ public class MainActivity extends ActionBarActivity {
             }
 
             @Override
-            public void failure(RetrofitError error) {
+            public void failure(RetrofitError error)
+            {
                 error.printStackTrace();
             }
         });
     }
 
-    private void setPostRequestString(){
+    private void setPostRequestString()
+    {
         EditText userName = (EditText) findViewById(R.id.user_name_text);
         EditText userPassword = (EditText) findViewById(R.id.password_text);
         String userNameText = userName.getText().toString();
@@ -226,9 +232,6 @@ public class MainActivity extends ActionBarActivity {
 
         user.setUserName(userNameText);
         user.setUserPassword(userPasswordText);
-        //String postString = "{\"user\": \""+userNameText+"\", \"pass\": \""+userPasswordText+"\"}";
-
-        //return postString;
     }
 
     private String getPostResponse(InputStream inputStream) throws IOException {

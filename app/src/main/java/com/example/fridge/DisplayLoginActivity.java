@@ -9,8 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.regex.PatternSyntaxException;
 
 
@@ -18,7 +21,8 @@ public class DisplayLoginActivity extends ActionBarActivity {
     private ArrayList<ProductDetails> userProducts = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_login);
         Intent intent = getIntent();
@@ -85,7 +89,19 @@ public class DisplayLoginActivity extends ActionBarActivity {
             String[] product = products.get(i).split(",");
             ProductDetails prod = new ProductDetails();
             prod.setProductName(product[0]);
-            prod.setExpiryDate(product[1]);
+
+            Date date = null;
+            try
+            {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                date = format.parse(product[1]);
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+
+            prod.setExpiryDate(date);
             prod.setProductType(product[2]);
             userProducts.add(prod);
         }
