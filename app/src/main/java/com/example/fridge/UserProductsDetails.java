@@ -6,6 +6,8 @@ public class UserProductsDetails {
     private int code;
     private String name;
     private ArrayList<ProductDetails> products;
+    private String userID;
+    private String groupID;
 
     public String getUser() {
         return name;
@@ -31,5 +33,21 @@ public class UserProductsDetails {
 
     public int getCode() {
         return code;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
 }

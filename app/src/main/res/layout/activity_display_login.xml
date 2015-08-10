@@ -8,23 +8,108 @@
     tools:context="com.example.fridge.DisplayLoginActivity"
     android:id="@+id/login_view">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TabHost
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Hello! :)"
-        android:id="@+id/hello_text"
-        android:textSize="20dp" />
+        android:id="@+id/tabHost"
+        android:layout_gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your items are:"
-        android:id="@+id/msg_text"
-        android:textSize="20dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/items_list"
-        android:background="#ff8b898c" />
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:id="@+id/tabAvailableProducts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available products:"
+                        android:id="@+id/msg_text1"
+                        android:textSize="20dp"
+                        android:phoneNumber="false" />
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:id="@+id/available_products_list"
+                        android:background="@color/listviewColor"
+                        android:layout_gravity="center"
+                        android:fastScrollAlwaysVisible="false"
+                        android:footerDividersEnabled="false"
+                        android:headerDividersEnabled="false" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabMissingProducts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Missing products:"
+                        android:id="@+id/msg_text2"
+                        android:textSize="20dp"
+                        android:phoneNumber="false" />
+
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:stretchColumns="0,1,2"
+                        android:id="@+id/missing_table"
+                        android:layout_weight="1">
+                    </TableLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabUnavailableProducts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:clickable="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unavailable products:"
+                        android:id="@+id/msg_text3"
+                        android:textSize="20dp"
+                        android:phoneNumber="false" />
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="260dp"
+                        android:id="@+id/unavailable_products_list"
+                        android:background="@color/listviewColor"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello! :)"
+                        android:id="@+id/hello_text"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
 </LinearLayout>

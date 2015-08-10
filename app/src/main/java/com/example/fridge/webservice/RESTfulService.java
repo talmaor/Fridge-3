@@ -22,6 +22,9 @@ public interface RESTfulService {
     @POST("/Auth")
     void loginAccount(@Body UserDetails user, Callback<UserProductsDetails> responseCallback);
 
+    @POST("/GetMissings")
+    void getMissings(@Body UserDetails user, Callback<UserProductsDetails> responseCallback);
+
      /*
     @FormUrlEncoded
     @POST("/accounts/{user}/verify")

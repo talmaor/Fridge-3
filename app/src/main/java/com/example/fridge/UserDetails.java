@@ -1,12 +1,13 @@
 package com.example.fridge;
 
-/**
- * Created by ספיר on 02/06/2015.
- */
-public class UserDetails {
+import java.io.Serializable;
+
+
+public class UserDetails implements Serializable {
     private String user;
     private String pass;
-    //private int groupId;
+    private String userID;
+    private String groupID;
 
     public void setUserName(String userName) {
         user = userName;
@@ -22,5 +23,21 @@ public class UserDetails {
 
     public String getUserPassword() {
         return pass;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
 }

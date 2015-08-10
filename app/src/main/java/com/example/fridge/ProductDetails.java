@@ -1,12 +1,11 @@
 package com.example.fridge;
 
 import java.util.Comparator;
-import java.util.Date;
 
 public class ProductDetails {
     private String name;
     //Date expiryDate;
-    private Date exp;
+    private String exp;
     private String type;
 
     public String getProductName() {
@@ -17,11 +16,11 @@ public class ProductDetails {
         this.name = name;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return exp;
     }
 
-    public void setExpiryDate(Date date) {
+    public void setExpiryDate(String date) {
         exp = date;
     }
 
@@ -46,11 +45,9 @@ public class ProductDetails {
     public static Comparator<ProductDetails> ProductExpiryDateComparator = new Comparator<ProductDetails>() {
 
         public int compare(ProductDetails p1, ProductDetails p2) {
-            Date firstExpiryDate = p1.getExpiryDate();
-            Date secondExpiryDate = p2.getExpiryDate();
 
             //ascending order
-            return firstExpiryDate.compareTo(secondExpiryDate);
+            return p1.getExpiryDate().compareTo(p2.getExpiryDate());
         }};
 
     public static Comparator<ProductDetails> ProductTypeComparator = new Comparator<ProductDetails>() {

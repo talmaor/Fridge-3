@@ -2,11 +2,7 @@ package com.example.fridge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +12,6 @@ import android.widget.Toast;
 import com.example.fridge.webservice.RESTfulService;
 import com.example.fridge.webservice.ServiceGenerator;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -69,125 +60,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Connect()
-    {
-        Thread background = new Thread(new Runnable() {
 
-            private final HttpClient Client = new DefaultHttpClient();
-            private String URL = "http://52.10.2.170"; //"http://52.11.32.106/Auth";
-
-            // After call for background.start this run method call
-            public void run() {
-                try {
-                    String SetServerString = "";
-                    HttpGet httpget = new HttpGet(URL);
-                    ResponseHandler<String> responseHandler = new BasicResponseHandler();
-                    SetServerString = Client.execute(httpget, responseHandler);
-                    threadMsg(SetServerString);
-                } catch (Throwable t) {
-                    // just end the background thread
-                    Log.i("Animation", "Thread  exception " + t);
-                }
-            }
-
-            private void threadMsg(String msg) {
-
-                if (!msg.equals(null) && !msg.equals("")) {
-                    Message msgObj = handler.obtainMessage();
-                    Bundle b = new Bundle();
-                    b.putString("message", msg);
-                    msgObj.setData(b);
-                    handler.sendMessage(msgObj);
-                }
-            }
-
-            // Define the Handler that receives messages from the thread and update the progress
-            private final Handler handler = new Handler(Looper.getMainLooper()) {
-
-                public void handleMessage(Message msg) {
-
-                    String aResponse = msg.getData().getString("message");
-                    // ALERT MESSAGE
-                    if ((null != aResponse)) {
-                        Toast.makeText(getBaseContext(), "Server Response: "+aResponse, Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(getBaseContext(), "Not Got Response From Server.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            };
-
-        });
-        // Start Thread
-        background.start();  //After call start method thread called run Method
-    }
-
-//    public void onLogin(View view) {
-//        Thread background = new Thread(new Runnable() {
-//
-//            HttpClient httpclient = new DefaultHttpClient();
-//            HttpPost httppost = new HttpPost("http://52.10.2.170/Auth"); //("http://52.11.32.106/Auth");
-//
-//            // After call for background.start this run method call
-//            public void run() {
-//                try {
-//                    String postString = setPostRequestString();
-//                    httppost.setEntity(new StringEntity(postString));
-//                    httppost.setHeader("Content-Type", "application/json");
-//
-//                    // Execute HTTP Post Request
-//                    HttpResponse httpResponse = httpclient.execute(httppost);
-//                    String SetServerString =  getPostResponse(httpResponse.getEntity().getContent());
-//                    threadMsg(SetServerString);
-//                } catch (Throwable t) {
-//                    // just end the background thread
-//                    Log.i("Animation", "Thread  exception " + t);
-//                }
-//            }
-//
-//            private void threadMsg(String msg) {
-//
-//                if (!msg.equals(null) && !msg.equals("")) {
-//                    Message msgObj = handler.obtainMessage();
-//                    Bundle b = new Bundle();
-//                    b.putString("message", msg);
-//                    msgObj.setData(b);
-//                    handler.sendMessage(msgObj);
-//                }
-//            }
-//
-//            // Define the Handler that receives messages from the thread and update the progress
-//            private final Handler handler = new Handler(Looper.getMainLooper()) {
-//
-//                public void handleMessage(Message msg) {
-//
-//                    String aResponse = msg.getData().getString("message");
-//                    // ALERT MESSAGE
-//                    if ((null != aResponse)) {
-//                        Intent intent = new Intent(getApplicationContext(),DisplayLoginActivity.class);
-//                        ArrayList<String> items = null;
-//                        try {
-//                            items = JsonParser(aResponse);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        if (null != items) {
-//                            intent.putStringArrayListExtra(EXTRA_MESSAGE, items);
-//                            startActivity(intent);
-//                        }
-//                        else {
-//                            Toast.makeText(getBaseContext(), "Not Got Response From Server.", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                    else {
-//                        Toast.makeText(getBaseContext(), "Not Got Response From Server.", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            };
-//        });
-//        // Start Thread
-//        background.start();  //After call start method thread called run Method
-//    }
 
     public void onLogin(View view) {
         setPostRequestString();
@@ -202,13 +75,17 @@ public class MainActivity extends ActionBarActivity {
                 try
                 {
                     items = ConvertServerResponseToString(serviceResponse);
+                    user.setGroupID(serviceResponse.getGroupID());
+                    user.setUserID(serviceResponse.getUserID());
+                    //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                    //Date firstExpiryDate = serviceResponse.getProducts().get(1).getExpiryDate();
                 }
-                catch (JSONException e)
-                {
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if (null != items) {
                     intent.putStringArrayListExtra(EXTRA_MESSAGE, items);
+                    intent.putExtra("UserDetails",user);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getBaseContext(), serviceResponse.toString(), Toast.LENGTH_SHORT).show();
@@ -319,5 +196,7 @@ public class MainActivity extends ActionBarActivity {
         //Toast.makeText(getBaseContext(), "onRegister test", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),DisplayRegisterActivity.class);
         startActivity(intent);
+
+
     }
 }
